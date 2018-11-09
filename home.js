@@ -3,6 +3,9 @@ var ctx = canvas.getContext("2d");
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
+// score
+var score = 0;
+
 // ball
 var ballRadius = 10;
 var x = canvas.width/2;
@@ -44,8 +47,14 @@ function collisionDetection() {
             var b = bricks[c][r];
             if(b.status == 1) {
                 if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                    score++;
+                    if(score == brickRowCount*brickColumnCount) {
+                      alert("YOU WIN, CONGRATS!");
+                      document.location.reload();
+                    }
                     dy = -dy;
                     b.status = 0;
+                    changeColor();
                 }
             }
         }
@@ -109,22 +118,27 @@ function changeColor(){
     storeColor = "rgb(" + Math.floor((Math.random() * 255)) + "," + Math.floor((Math.random() * Math.floor((Math.random() * 255)))) + "," + 55 + ")";
 }
 
+function drawScore() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Score: "+score, 8, 20);
+  }
+
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     drawPaddle();
     drawBricks();
     collisionDetection();
+    drawScore();
     
     // 碰撞偵測
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = dx + (Math.random() * 2 -1);
         dx = -dx;
-        changeColor();
     }
     if(y + dy < ballRadius) {
         dy = -dy;
-        changeColor();
     }else if(y + dy > canvas.height-ballRadius) {
         // 在 paddle 範圍內，下方
         if(x > paddleX && x < paddleX + paddleWidth) {
