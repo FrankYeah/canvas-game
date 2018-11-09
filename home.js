@@ -159,13 +159,8 @@ function draw() {
     }else if(y + dy > canvas.height-ballRadius) {
         // 在 paddle 範圍內，下方
         if(x > paddleX && x < paddleX + paddleWidth) {
-            dy = dy + (Math.random() * 1);
+            dy = dy + (Math.random() * 1+ 0.5);
             // 定義最大速度
-            if(dy > 5) {
-                dy = 5;
-            }else if(dy < -5){
-                dy = -5;
-            }
             dy = -dy;
         }
         else {
