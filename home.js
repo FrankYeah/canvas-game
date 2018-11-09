@@ -116,6 +116,7 @@ function keyUpHandler(e) {
     }
 }
 
+// 滑鼠控制paddle
 function mouseMoveHandler(e) {
     var relativeX = e.clientX - canvas.offsetLeft;
     if(relativeX > 0 && relativeX < canvas.width) {
@@ -168,7 +169,7 @@ function draw() {
             dy = -dy;
         }
         else {
-
+            // 生命處理
             lives--;
             if(!lives) {
                 clearInterval(drawTimer);
