@@ -1,5 +1,7 @@
 # Canvas: brick game
 
+Build a brick game from Canvas.
+
 https://frankyeah.github.io/canvas-game/
 
 
