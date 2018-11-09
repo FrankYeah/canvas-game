@@ -70,8 +70,9 @@ function draw() {
             dy = -dy;
         }
         else {
+            clearInterval(drawTimer);
             alert("GAME OVER");
-            setTimeout(function(){document.location.reload();},0);
+            document.location.reload();;
         }
     }
 
@@ -86,4 +87,4 @@ function draw() {
     y += dy;
 }
 
-setInterval(draw, 10);
+let drawTimer = setInterval(draw, 10);
