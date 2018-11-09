@@ -71,7 +71,7 @@ function draw() {
         }
         else {
             alert("GAME OVER");
-            document.location.reload();
+            setTimeout(function(){document.location.reload();},0);
         }
     }
 
